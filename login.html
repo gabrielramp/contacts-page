@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <style>
+        body 
+        {
+            background-image: linear-gradient(red, yellow, green);    
+        }
+        h1 
+        {
+        color: white;
+        text-shadow: 2px 2px black;
+        text-align: center;
+        }
+        p 
+        {
+        font-family: verdana;
+        font-size: 20px;
+        }
+    </style>
+    <body>
+        <table>
+            <tr>
+                <th><a href="index.html">Home</a></th>
+                <th><a href="members.html">Group Members</a></th>
+                <th><a href="contact.html">Contact Template</a></th>
+                <th><a href="login.html">Login</a></th>
+            </tr>
+        </table>
+
+        <hr/>
+        
+        <h1>
+            Group 25's Awesome Contact Editor
+        </h1>
+        
+        <section>
+            <form action="/login_submit.php">
+                <label for="fname">First name:</label>
+                <input type="text" id="fname" name="fname"><br><br>
+                <label for="lname">Last name:</label>
+                <input type="text" id="lname" name="lname"><br><br>
+                <input type="submit" value="Login">
+              </form>
+        </section>
+    </body>
+</html>
