@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/htmx.org@1.9.6"></script>
+    <script src="js/Hamburger.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/dist/output.css" rel="stylesheet">
+    <title>COP4331C -- Small Project</title>
+</head>
+<body class="min-h-[100svh] grid grid-rows-[auto_1fr_auto]">
+    
+    <nav class="col-auto flex flex-wrap items-center justify-between w-full py-4 md:py-0 px-4 text-lg text-gray-700 bg-[#C0C0C0] shadow-md border-black">
+       
+      <button class="text-[#0000FF]">
+        <img class="h-6"src="img/drawing.svg" alt="The Y2K website!">       
+      </button>
+
+        <div class="hidden w-full md:flex md:items-center md:w-auto" id="menu">
+            <ul
+              class="
+                pt-4
+                text-base text-[#0000FF]
+                md:flex
+                md:justify-between 
+                md:pt-0"
+            >
+              <li>
+                <a class="md:p-4 py-2 block hover:text-[#37ff14e1]" href="#"
+                  >Login</a
+                >
+              </li>
+              <li>
+                <a
+                  class="md:p-4 py-2 block hover:text-[#39FF14] text-[#22bb07e1]"
+                  href="#"
+                  >Sign Up</a
+                >
+              </li>
+            </ul>
+        </div>
+        
+        <div class="ml-auto md:hidden">
+          <button class="flex" onclick="openMenu()">
+            <ul class="grid grid-rows-3 gap-2">
+              <li class="w-8 h-[3px] bg-black"></li>
+              <li class="w-8 h-[3px] bg-black"></li>
+              <li class="w-8 h-[3px] bg-black"></li>
+            </ul>
+          </button>
+
+          <div class="hidden absolute bg-[#3894a3] mt-[17.5px] rounded
+                right-0 w-auto h-auto pl-[3.5rem] pr-[1.5rem] pb-[1rem]
+                flex-col z-10" id="hamburgerMenu">
+                    <ul class='flex 
+                               flex-col 
+                               self-end 
+                               text-xl 
+                               text-[#0000FF] 
+                               items-end 
+                               space-y-8
+                               pt-3'>
+                      <li>
+                        <a class="md:p-4 py-2 block 
+                                hover:text-[#37ff14e1] 
+                                hover:duration-300
+                                bg-transparent
+                                " href="#"
+                          >Login</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          class="md:p-4 
+                                 py-2 
+                                 block 
+                                 hover:text-[#39FF14] 
+                                 text-[#22bb07e1] 
+                                 bg-transparent
+                                 hover:duration-300
+                                 "
+                          href="#"
+                          >Sign Up</a
+                        >
+                      </li>
+                    </ul>
+          </div>
+        </div>
+    </nav>
+    
+
+    <div class="grid flex-col justify-center bg-gradient-to-t from-[#98FF98] to-[#32A89D]">
+      <div class="flex w-full h-fit pt-4 items-center justify-center">
+        <video class="md:h-1/2 h-1/6 border rounded shadow-lg border-[#000000]" loop autoplay>
+          <source src="img/serial-experiments-lain-lain.webm">
+        </video> 
+      </div>
+
+      <div class="text-center">
+        <h1 class="md:text-[60px]
+                    relative 
+                    font-mono 
+                    ">Experience the Y2K again</h1>
+        <h3 class="md:text-[30px]">as a Contact Manager</h3>
+      </div>
+    </div>
+    
+    <div>
+    </div>
+    <footer class="flex 
+                   items-center 
+                   min-h-[140px] 
+                   text-gray-700 
+                   bg-[#C0C0C0]
+                   border-t-2
+                   border-[#484747]
+                   "
+                   >
+      <p class="text-center text-lg w-full">
+        2023 COP4331C -- Small Project. Made with love by Group-25
+      </p>
+    </footer>
+</body>
+</html>

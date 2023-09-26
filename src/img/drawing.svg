@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="369.55341mm"
+   height="56.568542mm"
+   viewBox="0 0 369.55341 56.568542"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
+   sodipodi:docname="drawing.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.5"
+     inkscape:cx="-157"
+     inkscape:cy="284"
+     inkscape:window-width="2560"
+     inkscape:window-height="1372"
+     inkscape:window-x="0"
+     inkscape:window-y="32"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     showgrid="true">
+    <inkscape:grid
+       id="grid5"
+       units="mm"
+       originx="-48.077486"
+       originy="-431.25322"
+       spacingx="0.99999998"
+       spacingy="1"
+       empcolor="#0099e5"
+       empopacity="0.30196078"
+       color="#0099e5"
+       opacity="0.14901961"
+       empspacing="5"
+       dotted="false"
+       gridanglex="30"
+       gridanglez="30"
+       visible="true" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1">
+    <rect
+       x="857.01343"
+       y="340.82547"
+       width="923.48145"
+       height="544.47223"
+       id="rect4" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-12.720501,-114.10242)">
+    <g
+       id="g5"
+       transform="translate(5.4255712,-39.101531)">
+      <rect
+         style="fill:#d3bc5f;stroke-width:0.343232"
+         id="rect2"
+         width="40"
+         height="40"
+         x="161.48822"
+         y="-55.579205"
+         transform="rotate(90)" />
+      <g
+         id="g4"
+         transform="translate(52.384827,-20.953931)">
+        <rect
+           style="fill:#e3e2db;stroke-width:0.343232"
+           id="rect2-2"
+           width="40"
+           height="40"
+           x="-175.03159"
+           y="111.26485"
+           transform="rotate(-45)" />
+        <rect
+           style="fill:#00ffff;stroke-width:0.288967"
+           id="rect2-2-2"
+           width="33.675961"
+           height="33.675961"
+           x="-171.86957"
+           y="114.42686"
+           transform="rotate(-45)" />
+      </g>
+      <rect
+         style="fill:#1a1a1a;stroke-width:0.0686464"
+         id="rect2-2-7"
+         width="8"
+         height="8"
+         x="-123.17325"
+         y="133.48984"
+         transform="rotate(-45)" />
+      <rect
+         style="fill:#1a1a1a;stroke-width:0.0686464"
+         id="rect2-2-7-6"
+         width="8"
+         height="8"
+         x="-123.17325"
+         y="165.48984"
+         transform="rotate(-45)" />
+      <rect
+         style="fill:#1a1a1a;stroke-width:0.0686464"
+         id="rect2-2-7-61"
+         width="8"
+         height="8"
+         x="-91.173248"
+         y="133.48985"
+         transform="rotate(-45)" />
+      <rect
+         style="fill:#1a1a1a;stroke-width:0.0686464"
+         id="rect2-2-7-2"
+         width="8"
+         height="8"
+         x="-91.173256"
+         y="165.48985"
+         transform="rotate(-45)" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:35.2778px;line-height:0;fill:#d3bc5f;stroke-width:0.264583"
+       x="67.489883"
+       y="156.00392"
+       id="text3"><tspan
+         sodipodi:role="line"
+         id="tspan3"
+         style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:35.2778px;line-height:0;font-family:'JetBrains Mono';-inkscape-font-specification:'JetBrains Mono Semi-Bold';fill:#0000ff;stroke-width:0.264583"
+         x="67.489883"
+         y="156.00392">The Y2K Website</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="scale(0.26458333)"
+       id="text4"
+       style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:53.3333px;line-height:0;font-family:'JetBrains Mono';-inkscape-font-specification:'JetBrains Mono Semi-Bold';white-space:pre;shape-inside:url(#rect4);display:inline;fill:#0000ff" />
+  </g>
+</svg>
