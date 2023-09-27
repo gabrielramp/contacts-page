@@ -26,20 +26,24 @@
                 md:pt-0"
             >
               <li>
-                <a class="md:p-4 py-2 block hover:text-[#37ff14e1]" href="#"
+                <a class="md:p-4 py-2 block hover:text-[#37ff14e1]" 
+                   href="#"
+                   onclick="loginScreen.showModal()"
                   >Login</a
                 >
               </li>
               <li>
                 <a
                   class="md:p-4 py-2 block hover:text-[#39FF14] text-[#22bb07e1]"
-                  href="#"
+                  href="#" 
+                  onclick="loginScreen.showModal()"
                   >Sign Up</a
                 >
               </li>
             </ul>
         </div>
-        
+
+        <!-- Hamburger menu code -->
         <div class="ml-auto md:hidden">
           <button class="flex" onclick="openMenu()">
             <ul class="grid grid-rows-3 gap-2">
@@ -49,6 +53,7 @@
             </ul>
           </button>
 
+          <!-- Items in menu code -->
           <div class="hidden absolute bg-[#3894a3] mt-[17.5px] rounded
                 right-0 w-auto h-auto pl-[3.5rem] pr-[1.5rem] pb-[1rem]
                 flex-col z-10" id="hamburgerMenu">
@@ -86,6 +91,7 @@
                     </ul>
           </div>
         </div>
+        <!-- End of Hamburger menu code -->
     </nav>
     
 
@@ -96,17 +102,28 @@
         </video> 
       </div>
 
-      <div class="text-center">
-        <h1 class="md:text-[60px]
-                    relative 
-                    font-mono 
-                    ">Experience the Y2K again</h1>
-        <h3 class="md:text-[30px]">as a Contact Manager</h3>
+      <div class="grid grid-rows-2 h-fit justify-self-center text-center">
+          <h1 class="md:text-[60px] sm:text-[45px] text-[25px]
+          font-mono
+          "
+          id="exampleh1">Experience the Y2K again</h1>
+          <h3 class="md:text-[30px]
+                     text-[15px]">as a Contact Manager</h3>
       </div>
     </div>
     
     <div>
     </div>
+    
+    
+    <dialog id="loginScreen" >
+      
+      <div class="">
+        <h1>Hello World</h1>
+        <p>bla bla stuf</p>
+      <div>
+      </dialog>
+    
     <footer class="flex 
                    items-center 
                    min-h-[140px] 
@@ -120,5 +137,6 @@
         2023 COP4331C -- Small Project. Made with love by Group-25
       </p>
     </footer>
+    
 </body>
 </html>
