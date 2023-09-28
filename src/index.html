@@ -116,13 +116,25 @@
     </div>
     
     
-    <dialog id="loginScreen" >
+    <dialog id="loginScreen">
       
-      <div class="">
-        <h1>Hello World</h1>
-        <p>bla bla stuf</p>
+      <div class="grid h-[360px] w-[360px] items-center justify-items-center">
+        <h1 class="row-span-3 border font-bold md:text-[30px]">Login</h1>
+
+        <form class="flex flex-col " hx-post="/login">
+          <label>Email:</label>
+          <input class="border border-black" name="email">
+          <label for="password">Password: </label>
+          <input class="border border-black" name="password">
+          
+          <button class="btn btn-default">Login</button>
+        </form>
+
+        <p>Or Sign up: </p>
+        <p>SIGN UP</p>
       <div>
-      </dialog>
+
+    </dialog>
     
     <footer class="flex 
                    items-center 
