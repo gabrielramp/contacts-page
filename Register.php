@@ -1,8 +1,8 @@
 <?php
-$DATABASE_HOST = 'localhost';
-$DATABASE_USER = 'root';
-$DATABASE_PASS = '';
-$DATABASE_NAME = 'phplogin';
+$DATABASE_HOST = '138.197.100.219:3306';
+$DATABASE_USER = 'copuser';
+$DATABASE_PASS = 'sqlpeople';
+$DATABASE_NAME = 'COP4331';
 
 // Connect to DB
 $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
@@ -13,52 +13,48 @@ if (mysqli_connect_errno()) {
 }
 
 // Check if the data exists.
-if (!isset($_POST['FName'], $_POST['LName'], $_POST['password'], $_POST['email'])) {
+if (!isset($_POST['Login'], $_POST['Password'], $_POST['FirstName'], $_POST['LastName'])) {
 	// Data doesn't exist
 	exit('Please complete the registration form!');
 }
 // Check if any field are empty
-if (empty($_POST['FName']) || empty($_POST['LName']) || empty($_POST['password']) || empty($_POST['email'])) {
+if (empty($_POST['Login']) || empty($_POST['Password']) || empty($_POST['FirstName']) || empty($_POST['LastName'])) {
 	// there is an empty field
 	exit('Please complete the registration form');
 }
 // Check whether password and confPassword are the same or not
-if ($_POST['password'] !== $_POST['confPassword']) {
+//if ($_POST['password'] !== $_POST['confPassword']) {
 	// passwords aren't the same
-	exit("Passwords don't match");
-}
-// Check if email is valid
-if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-	// email isn't valid
-	exit('Email is not valid!');
-}
+	//exit("Passwords don't match");
+//}
 
 // Check if password is too short or long
-if (strlen($_POST['password']) > 20 || strlen($_POST['password']) < 5) {
+if (strlen($_POST['Password']) > 20 || strlen($_POST['Password']) < 5) {
 	// password is too short or too long
 	exit('Password must be between 5 and 20 characters long!');
 }
 
-// Check if email is used
-if ($stmt = $con->prepare('SELECT id, password FROM user WHERE email = ?')) {
+// Check if username is used
+if ($stmt = $con->prepare('SELECT ID, password FROM Users WHERE Login = ?')) {
 
-	$stmt->bind_param('s', $_POST['email']);
+	$stmt->bind_param('s', $_POST['Login']);
 	$stmt->execute();
 	$stmt->store_result();
 
 
 	if ($stmt->num_rows > 0) {
-		// email already in use
-		echo 'email exists, please choose another!';
+		// Login already in use
+		echo 'Login exists, please choose another!';
 	} else {
         // email not in use, insert new account
-        if ($stmt = $con->prepare('INSERT INTO user(first_name, last_name, email, password) VALUES (?, ?, ?, ?)')) {
+        if ($stmt = $con->prepare('INSERT INTO Users(FirstName, LastName, Login, Password) VALUES(?,?,?,?)')) {
+
 			// Protect password
-			$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-        	$stmt->bind_param('ssss', $_POST['FName'], $_POST['LName'], $_POST['email'], $password);
+        	$stmt->bind_param('ssss', $_POST['FirstName'], $_POST['LastName'], $_POST['Login'], $_POST['Password']);
         	$stmt->execute();
+
 			// Account created, redirect to login page
-        	header("Location: login.html");
+			echo 'You have successfully registered, you can now login!';
         } else {
         	// Error with SQL Query
         	echo 'Could not prepare statement!';
