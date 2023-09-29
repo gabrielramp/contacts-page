@@ -27,7 +27,7 @@ class DatabaseConnector {
         } catch (\PDOException $e) {
             exit($e->getMessage());
         }
-    }
+        }
 
     public function getConnection()
     {

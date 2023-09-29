@@ -1,68 +1,59 @@
 <?php
 
-	$inData = getRequestInfo();
-	
-	$searchResults = "";
-	$searchCount = 0;
+$inData = getRequestInfo();
 
-	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
-	if ($conn->connect_error) 
-	{
-		returnWithError( $conn->connect_error );
-	} 
-	else
-	{
-		$stmt = $conn->prepare("select Name from Colors where Name like ? and UserID=?");
-		$colorName = "%" . $inData["search"] . "%";
-		$stmt->bind_param("ss", $colorName, $inData["userId"]);
-		$stmt->execute();
-		
-		$result = $stmt->get_result();
-		
-		while($row = $result->fetch_assoc())
-		{
-			if( $searchCount > 0 )
-			{
-				$searchResults .= ",";
-			}
-			$searchCount++;
-			$searchResults .= '"' . $row["Name"] . '"';
-		}
-		
-		if( $searchCount == 0 )
-		{
-			returnWithError( "No Records Found" );
-		}
-		else
-		{
-			returnWithInfo( $searchResults );
-		}
-		
-		$stmt->close();
-		$conn->close();
-	}
+$searchResults = "";
+$searchCount = 0;
 
-	function getRequestInfo()
-	{
-		return json_decode(file_get_contents('php://input'), true);
-	}
+include 'DBConnector.php';
 
-	function sendResultInfoAsJson( $obj )
-	{
-		header('Content-type: application/json');
-		echo $obj;
-	}
-	
-	function returnWithError( $err )
-	{
-		$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
-		sendResultInfoAsJson( $retValue );
-	}
-	
-	function returnWithInfo( $searchResults )
-	{
-		$retValue = '{"results":[' . $searchResults . '],"error":""}';
-		sendResultInfoAsJson( $retValue );
-	}
-	
+$conn = (new DatabaseConnector())->getConnection();
+
+if (!$conn) {
+    returnWithError("Connection error.");
+} else {
+    $stmt = $conn->prepare("SELECT Name FROM Colors WHERE Name LIKE :colorName AND UserID = :userId");
+
+    $colorName = "%" . $inData["search"] . "%";
+    $stmt->bindParam(':colorName', $colorName);
+    $stmt->bindParam(':userId', $inData["userId"]);
+
+    $stmt->execute();
+
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    foreach ($results as $row) {
+        if ($searchCount > 0) {
+            $searchResults .= ",";
+        }
+        $searchCount++;
+        $searchResults .= '"' . $row["Name"] . '"';
+    }
+
+    if ($searchCount == 0) {
+        returnWithError("No Records Found");
+    } else {
+        returnWithInfo($searchResults);
+    }
+}
+
+function getRequestInfo() {
+    return $_POST;
+}
+
+function sendResultInfoAsJson($obj) {
+    header('Content-type: application/json');
+    echo $obj;
+}
+
+function returnWithError($err) {
+    $retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
+    sendResultInfoAsJson($retValue);
+}
+
+function returnWithInfo($searchResults) {
+    $retValue = '{"results":[' . $searchResults . '],"error":""}';
+    sendResultInfoAsJson($retValue);
+}
+
 ?>

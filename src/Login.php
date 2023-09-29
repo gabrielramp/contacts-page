@@ -2,15 +2,17 @@
 <?php
 
 	$inData = getRequestInfo();
-	
+	include 'DBConnector.php';
+
+	$conn = (new DatabaseConnector())->getConnection();
+
 	$id = 0;
 	$firstName = "";
 	$lastName = "";
 
-	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331"); 	
-	if( $conn->connect_error )
-	{
-		returnWithError( $conn->connect_error );
+
+	if (!$conn) {
+		returnWithError("Connection error.");
 	}
 	else
 	{
@@ -31,10 +33,9 @@
 		$stmt->close();
 		$conn->close();
 	}
-	
-	function getRequestInfo()
-	{
-		return json_decode(file_get_contents('php://input'), true);
+
+	function getRequestInfo() {
+		return $_POST;
 	}
 
 	function sendResultInfoAsJson( $obj )
