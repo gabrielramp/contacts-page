@@ -1,16 +1,10 @@
 <?php
-$DATABASE_HOST = '138.197.100.219:3306';
-$DATABASE_USER = 'copuser';
-$DATABASE_PASS = 'sqlpeople';
-$DATABASE_NAME = 'COP4331';
 
-// Connect to DB
-$con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+include 'DBConnector.php';
 
-if (mysqli_connect_errno()) {
-	// Error with connection
-	exit('Failed to connect to MySQL: ' . mysqli_connect_error());
-}
+use DatabaseConnector as db;
+
+$con = new db();
 
 // Check if the data exists.
 if (!isset($_POST['Login'], $_POST['Password'], $_POST['FirstName'], $_POST['LastName'])) {
@@ -22,11 +16,6 @@ if (empty($_POST['Login']) || empty($_POST['Password']) || empty($_POST['FirstNa
 	// there is an empty field
 	exit('Please complete the registration form');
 }
-// Check whether password and confPassword are the same or not
-//if ($_POST['password'] !== $_POST['confPassword']) {
-	// passwords aren't the same
-	//exit("Passwords don't match");
-//}
 
 // Check if password is too short or long
 if (strlen($_POST['Password']) > 20 || strlen($_POST['Password']) < 5) {
