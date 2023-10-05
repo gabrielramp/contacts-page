@@ -1,7 +1,8 @@
 <?php
 	$inData = getRequestInfo();
+	$sessionData = getSessionInfo();
 	
-	$userId = $inData["userId"];
+	$userid = $sessionData["id"];
 	$firstname = $inData["firstname"];
 	$lastname = $inData["lastname"];
 	$email = $inData["email"];
@@ -25,6 +26,8 @@
 		$stmt = $conn->prepare("INSERT into Contacts (userid, firstname, lastname, email, phone) VALUES(?,?,?,?,?)");
 		$stmt->bind_param("sssss", $userid, $firstname, $lastname, $email, $phone);
 		$stmt->execute();
+
+
 		$stmt->close();
 		$conn->close();
 		echo "Contact added successfully";
@@ -34,6 +37,11 @@
 	function getRequestInfo()
 	{
 		return $_POST;
+	}
+
+	function getSessionInfo()
+	{
+		return $_SESSION;
 	}
 
 	function sendResultInfoAsJson( $obj )
