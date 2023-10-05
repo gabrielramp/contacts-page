@@ -1,27 +1,39 @@
 <?php
 	$inData = getRequestInfo();
 	
-	$color = $inData["color"];
 	$userId = $inData["userId"];
+	$firstname = $inData["firstname"];
+	$lastname = $inData["lastname"];
+	$email = $inData["email"];
+	$phone = $inData["phone"];
 
-	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
+	// Include the DBConnector.php file to use the DatabaseConnector class.
+	include 'DBConnector.php';
+
+	// Use an alias 'db' for the DatabaseConnector class to shorten the syntax.
+	use DatabaseConnector as db;
+
+	// Create a new instance of the DatabaseConnector class, stored in the variable $conn.
+	$conn = new db();
+
 	if ($conn->connect_error) 
 	{
 		returnWithError( $conn->connect_error );
-	} 
+	}
 	else
 	{
-		$stmt = $conn->prepare("INSERT into Colors (UserId,Name) VALUES(?,?)");
-		$stmt->bind_param("ss", $userId, $color);
+		$stmt = $conn->prepare("INSERT into Contacts (userid, firstname, lastname, email, phone) VALUES(?,?,?,?,?)");
+		$stmt->bind_param("sssss", $userid, $firstname, $lastname, $email, $phone);
 		$stmt->execute();
 		$stmt->close();
 		$conn->close();
-		returnWithError("");
+		echo "Contact added successfully";
+		// TODO: Add something to return to the front end to signify a successful contact add.
 	}
 
 	function getRequestInfo()
 	{
-		return json_decode(file_get_contents('php://input'), true);
+		return $_POST;
 	}
 
 	function sendResultInfoAsJson( $obj )
@@ -36,4 +48,9 @@
 		sendResultInfoAsJson( $retValue );
 	}
 	
+	function retunWithInfo( $info )
+	{
+		$retValue = '{"info":"' . $info . '"}';
+		sendResultInfoAsJson( $retValue );
+	}
 ?>

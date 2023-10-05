@@ -39,7 +39,7 @@ if ($stmt = $con->prepare('SELECT ID, Password FROM Users WHERE Login = ?')) {
         $_SESSION['id'] = $id;
         
         // Redirect to the user dashboard or home page.
-        header('Location: dashboard.php');
+        header('Location: Home.php');
         exit;
     } else {
         // Password is incorrect, display an error message.
