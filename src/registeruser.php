@@ -10,12 +10,28 @@
 
 <h2>Search Colors</h2>
 
-<form hx-post="localhost:" hx-trigger="submit" hx-target="#results" hx-indicator="#loading">
-    First Name: <input type="text" name="firstName"><br><br>
-    Last Name: <input type="text" name="lastName"><br><br>
-    User Name: <input type="text" name="userName"><br><br>
-    Password: <input type="text" name="password"><br><br>
-    <input type="submit" value="Search">
+<div id="registrationResponse"></div>
+
+<form hx-post="http://localhost/src/registeruser.php" hx-target="#registrationResponse">
+    <div>
+        <label for="Login">Username:</label>
+        <input type="text" name="Login" required>
+    </div>
+    <div>
+        <label for="Password">Password:</label>
+        <input type="text" name="Password" required>
+    </div>
+    <div>
+        <label for="FirstName">First Name:</label>
+        <input type="text" name="FirstName" required>
+    </div>
+    <div>
+        <label for="LastName">Last Name:</label>
+        <input type="text" name="LastName" required>
+    </div>
+    <div>
+        <button type="submit">Register</button>
+    </div>
 </form>
 
 <h3>Results:</h3>
