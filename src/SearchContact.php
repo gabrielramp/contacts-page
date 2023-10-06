@@ -1,44 +1,67 @@
 <?php
 
+//session_start();
+// Debug session
+
 $inData = getRequestInfo();
+$sessionData = getSessionInfo();
+
+$keyword = $inData["keyword"];
+$id = $sessionData["id"];
+
+//$id = 0;
+// Debug
+
+//echo "Keyword: " . $keyword . "\n";
+//echo "ID: " . $id . "\n";
+// More debug
 
 $searchResults = "";
 $searchCount = 0;
 
-include 'DBConnector.php';
+if ($keyword == "" or $keyword == null or !is_numeric($id)) {
+    returnWithError("Please enter a search term.");
+    exit();
+}
 
+include 'DBConnector.php';
 $conn = (new DatabaseConnector())->getConnection();
 
 if (!$conn) {
     returnWithError("Connection error.");
 } else {
-    $stmt = $conn->prepare("SELECT Name FROM Colors WHERE Name LIKE :colorName AND UserID = :userId");
+    $stmt = $conn->prepare("SELECT id, firstname, lastname, email, phone FROM Contacts WHERE userid = :id AND (firstname LIKE :keyword OR lastname LIKE :keyword OR email LIKE :keyword)");
 
-    $colorName = "%" . $inData["search"] . "%";
-    $stmt->bindParam(':colorName', $colorName);
-    $stmt->bindParam(':userId', $inData["userId"]);
+    // Bind parameters
+    $stmt->bindParam(':id', $id);
+    $stmt->bindParam(':keyword', $keyword);
 
     $stmt->execute();
-
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    foreach ($results as $row) {
-        if ($searchCount > 0) {
-            $searchResults .= ",";
-        }
-        $searchCount++;
-        $searchResults .= '"' . $row["Name"] . '"';
-    }
+    //echo json_encode($results);
+    //echo "\n";
+    //echo "Success!";
+    //echo "\n";
+    // Debug
+
+    $stmt->closeCursor(); // Close the cursor
+
+    $searchCount = count($results); // Count the search results
 
     if ($searchCount == 0) {
         returnWithError("No Records Found");
     } else {
-        returnWithInfo($searchResults);
+        returnWithInfo($results);
     }
 }
 
 function getRequestInfo() {
-    return $_POST;
+    return $_GET;
+}
+
+function getSessionInfo() {
+    return $_SESSION;
 }
 
 function sendResultInfoAsJson($obj) {
@@ -47,13 +70,12 @@ function sendResultInfoAsJson($obj) {
 }
 
 function returnWithError($err) {
-    $retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
+    $retValue = '{"id":0, "firstName":"", "lastName":"", "email":"", "phone":"", "error":"' . $err . '"}';
     sendResultInfoAsJson($retValue);
 }
 
 function returnWithInfo($searchResults) {
-    $retValue = '{"results":[' . $searchResults . '],"error":""}';
-    sendResultInfoAsJson($retValue);
+    sendResultInfoAsJson(json_encode($searchResults));
 }
 
 ?>
