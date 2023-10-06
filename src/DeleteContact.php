@@ -3,10 +3,7 @@
 	$sessionData = getSessionInfo();
 	
 	$userid = $sessionData["id"];
-	$firstname = $inData["firstname"];
-	$lastname = $inData["lastname"];
-	$email = $inData["email"];
-	$phone = $inData["phone"];
+	$deleteid = $inData["deleteid"];
 
 	// Include the DBConnector.php file to use the DatabaseConnector class.
 	include 'DBConnector.php';
@@ -24,7 +21,9 @@
 	else
 	{
 		// Assuming you have a table named "Contacts" with a primary key column "id" to identify contacts.
-		$stmt = $conn->prepare("DELETE FROM Contacts WHERE userid, firstname, lastname, email, phone = (?,?,?,?,?)");
+		$stmt = $conn->prepare("DELETE FROM Contacts WHERE id = $deleteid");
+
+		// TODO: Finish this statement to delete the contact with the given ID.
 		$stmt->bind_param("sssss", $userid, $firstname, $lastname, $email, $phone);
 		$stmt->execute();
 		$stmt->close();
@@ -35,7 +34,7 @@
 
 	function getRequestInfo()
 	{
-		return $_GET; // Change from $_POST to $_GET to receive data from the URL query parameters.
+		return $_POST; // Change from $_POST to $_GET to receive data from the URL query parameters.
 	}
 
 	function getSessionInfo()

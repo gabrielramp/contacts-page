@@ -56,6 +56,8 @@ if (!$conn) {
     }
 }
 
+$conn->close();
+
 function getRequestInfo() {
     return $_GET;
 }
