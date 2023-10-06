@@ -2,9 +2,7 @@
 
 include 'DBConnector.php';
 
-use DatabaseConnector as db;
-
-$con = new db();
+$conn = (new DatabaseConnector())->getConnection();
 
 // Check if the data exists.
 if (!isset($_POST['Login'], $_POST['Password'], $_POST['FirstName'], $_POST['LastName'])) {
@@ -24,8 +22,11 @@ if (strlen($_POST['Password']) > 20 || strlen($_POST['Password']) < 5) {
 }
 
 // Check if username is used
-if ($stmt = $con->prepare('SELECT ID, password FROM Users WHERE Login = ?')) {
-
+if (!$conn) {
+    returnWithError("Connection error.");
+}
+else {
+    $stmt = $conn->prepare('SELECT ID, password FROM Users WHERE Login = ?');
 	$stmt->bind_param('s', $_POST['Login']);
 	$stmt->execute();
 	$stmt->store_result();
@@ -36,7 +37,7 @@ if ($stmt = $con->prepare('SELECT ID, password FROM Users WHERE Login = ?')) {
 		echo 'Login exists, please choose another!';
 	} else {
         // email not in use, insert new account
-        if ($stmt = $con->prepare('INSERT INTO Users(FirstName, LastName, Login, Password) VALUES(?,?,?,?)')) {
+        if ($stmt = $conn->prepare('INSERT INTO Users(FirstName, LastName, Login, Password) VALUES(?,?,?,?)')) {
 
 			// Protect password
         	$stmt->bind_param('ssss', $_POST['FirstName'], $_POST['LastName'], $_POST['Login'], $_POST['Password']);
@@ -50,9 +51,6 @@ if ($stmt = $con->prepare('SELECT ID, password FROM Users WHERE Login = ?')) {
         }
 	}
 	$stmt->close();
-} else {
-	// Error with SQL Query
-	echo 'Could not prepare statement!';
 }
-$con->close();
+$conn->close();
 ?>
