@@ -11,13 +11,41 @@
         animation: typing 2.5s steps(40, end),
         blink-caret .60s step-end infinite;
     }
+    
+    .continueBtn {
+        @apply bg-[#2d961ace] hover:bg-[#22BB07E1] text-xs md:text-base text-white font-bold p-[2px] md:py-1 md:px-2 rounded-md
+    }
+
+    .fistandlastname-container {
+        @apply flex w-full justify-between
+    }
+
+    .registeringInsideContainer {
+        @apply flex border-b border-gray-400 pr-[2px] w-fit
+    }
+
+    .password-container {
+        @apply flex w-full justify-between
+    }
+
+    .user-container {
+        @apply flex w-full justify-between
+    }
 
     @keyframes typing {
         from { width: 0 }
         to { width: 100% }
     }
+
     @keyframes blink-caret {
         from, to { border-color: transparent }
         50% { border-color: orange }
+    }
+
+    dialog::backdrop {
+        backdrop-filter: blur(5px);
+      }
+    dialog{
+        @apply rounded-lg;
     }
 }

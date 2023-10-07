@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/htmx.org@1.9.6"></script>
+    <script src="js/typingEffect.js"></script>
+    <script src="js/showPassword.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/dist/output.css" rel="stylesheet">
+    <title>COP4331C -- Small Project</title>
+</head>
+<body class="grid bg-gradient-to-t from-[#98FF98] to-[#32A89D] min-h-[100svh]">
+
+      <nav class="flex 
+                  border
+                  border-black
+                  h-fit
+                  md:py-0 
+                  px-4"
+                  >
+        <button class="text-[#0000FF]" onclick="location.href='/src'">
+          <img class="h-6"src="img/drawing.svg" alt="The Y2K website!">       
+        </button>
+      </nav>
+
+      <form class="grid grid-rows-[auto_1fr] text-center justify-items-center signupBox">
+        
+        <div>
+          Greetings
+          <br>
+          <span class="w-auto">Hey there, welcome to the Y2K. 
+            <br>
+            Let's get started
+          </span>  
+        </div>
+        
+          
+            <div class="bg-green-200 
+                      rounded 
+                      shadow-md 
+                      m-6
+                      p-2 
+                      grid 
+                      space-y-6 
+                      justify-items-center 
+                      justify-self-center
+                      container
+                      w-fit
+                      h-fit
+                      "
+                      >
+
+            <div class="fistandlastname-container">
+              <div class="flex border-b 
+                        border-gray-400 
+                          pr-[2px]
+                          w-fit
+                          ">
+                <input class="focus:outline-none bg-transparent" 
+                      name="FirstName" type="text" id="firstNameField" 
+                      placeholder="First Name">
+              </div>
+              
+              <button type="button" onclick="console.log()"
+                      class="continueBtn">Continue</button>
+            </div>
+
+            <div class="password-container flex">
+              <div class="registeringInsideContainer
+                          ">
+                <input class="focus:outline-none bg-transparent" 
+                      name="LastName" type="text" id="lastNameField" 
+                      placeholder="Last Name">
+              
+              </div>
+              <button type="button" onclick="console.log()"
+                      class="continueBtn">Continue</button>
+            </div>
+
+            <div class="password-container flex">
+              <div class="registeringInsideContainer
+                        ">
+                <input class="focus:outline-none bg-transparent" 
+                  name="UserName" type="text" id="lastNameField" 
+                  placeholder="Username">
+                
+                </div>
+              <button type="button" onclick="console.log()"
+                      class="continueBtn">Continue</button>
+            </div>
+            
+            <div class="password-container flex space-x-4">
+              <div class="registeringInsideContainer
+                        ">
+                <input class="focus:outline-none bg-transparent"
+                      name="password"
+                      type="password"
+                      id="passwordField"
+                      placeholder="Enter password"
+                      >
+                  
+                <button type="button" onclick="showPassword()" id="togglePassword">
+                  <img src="./img/eye-password-hide-svgrepo-com.svg" alt="Hide"
+                      class="h-5 hidden"
+                      id="hideField">
+                  <img src="./img/eye-password-show-svgrepo-com.svg" alt="Show"
+                      class="h-5"
+                      id="showField">
+                </button>
+              </div>
+              <button type="button" onclick="console.log()"
+                      class="continueBtn">Continue</button>
+            </div>
+            
+            <div class="p-3">
+              <button class="bg-[#2d961ace] hover:bg-[#22BB07E1] text-white font-bold py-2 px-4 rounded-full">Submit</button>
+            </div>
+
+        </div>
+      </form>
+
+    
+    
+</body>
+</html>

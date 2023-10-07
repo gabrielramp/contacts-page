@@ -4,19 +4,40 @@
     <meta charset="UTF-8">
     <script src="https://unpkg.com/htmx.org@1.9.6"></script>
     <script src="js/Hamburger.js"></script>
+    <script src="js/showPassword.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/dist/output.css" rel="stylesheet">
     <title>COP4331C -- Small Project</title>
 </head>
 <body class="min-h-[100svh] grid grid-rows-[auto_1fr_auto]">
     
-    <nav class="col-auto flex flex-wrap items-center justify-between w-full py-4 md:py-0 px-4 text-lg text-gray-700 bg-[#C0C0C0] shadow-md border-black">
-       
-      <button class="text-[#0000FF]">
-        <img class="h-6"src="img/drawing.svg" alt="The Y2K website!">       
-      </button>
+    <nav class="col-auto 
+                flex 
+                flex-wrap 
+                items-center 
+                justify-between 
+                w-full 
+                py-4 
+                md:py-0 
+                px-4 
+                text-lg 
+                text-gray-700 
+                bg-[#C0C0C0] 
+                shadow-md 
+                border-black"
+                >
 
-        <div class="hidden w-full md:flex md:items-center md:w-auto" id="menu">
+        <a class="text-[#0000FF]" href="/src/index.html" type="button">
+          <img class="h-6"src="img/drawing.svg" alt="The Y2K website!">     
+        </a>
+
+
+        <div class="hidden 
+                    w-full 
+                    md:flex 
+                    md:items-center 
+                    md:w-auto" id="menu"
+                    >
             <ul
               class="
                 pt-4
@@ -35,8 +56,7 @@
               <li>
                 <a
                   class="md:p-4 py-2 block hover:text-[#39FF14] text-[#22bb07e1]"
-                  href="#" 
-                  onclick="loginScreen.showModal()"
+                  href="/src/signup.html"
                   >Sign Up</a
                 >
               </li>
@@ -84,7 +104,7 @@
                                  bg-transparent
                                  hover:duration-300
                                  "
-                          href="#"
+                          href="./signup.html"
                           >Sign Up</a
                         >
                       </li>
@@ -95,7 +115,13 @@
     </nav>
     
 
-    <div class="grid flex-col justify-center bg-gradient-to-t from-[#98FF98] to-[#32A89D]">
+    <div class="grid 
+                flex-col 
+                justify-center 
+                bg-gradient-to-t 
+                from-[#98FF98] 
+                to-[#32A89D]"
+                >
       <div class="flex w-full h-fit pt-4 items-center justify-center">
         <video class="md:h-1/2 h-1/6 border rounded shadow-lg border-[#000000]" loop autoplay>
           <source src="img/serial-experiments-lain-lain.webm">
@@ -117,23 +143,61 @@
     
     
     <dialog id="loginScreen">
-      
-      <div class="grid h-[360px] w-[360px] items-center justify-items-center">
-        <h1 class="row-span-3 border font-bold md:text-[30px]">Login</h1>
+      <div class="grid 
+                  sm:h-[360px] 
+                  sm:w-[360px] 
+                  h-[300px] 
+                  w-[300px] 
+                  items-center 
+                  justify-items-center
+                  rounded-xl
+                  ">
+        <h1 class="row-span-3 
+                   w-full
+                   font-bold 
+                   md:text-[30px]
+                   border-b-2
+                   h-full
+                   flex
+                   justify-center
+                   items-center
+                  border-zinc-500
+                   ">Login</h1>
 
-        <form class="flex flex-col " hx-post="/login">
-          <label>Email:</label>
-          <input class="border border-black" name="email">
+        <form class="flex flex-col gap-2">
+          <label>Username:</label>
+          <input class="border-b
+                      border-gray-400 
+                        focus:outline-none" 
+                        name="login"
+                        type="text"
+                        placeholder="Enter username"
+                        >
           <label for="password">Password: </label>
-          <input class="border border-black" name="password">
-          
-          <button class="btn btn-default">Login</button>
+          <div class="flex border-b border-gray-400 pr-[2px]">
+            <input class="focus:outline-none"
+                    name="password"
+                    type="password"
+                    id="passwordField"
+                    placeholder="Enter password"
+                    >
+            
+            <button onclick="showPassword()" id="togglePassword">
+              <img src="./img/eye-password-hide-svgrepo-com.svg" alt="Hide"
+                   class="h-5 hidden"
+                   id="hideField">
+              <img src="./img/eye-password-show-svgrepo-com.svg" alt="Show"
+                   class="h-5"
+                   id="showField">
+            </button>
+
+          </div>
+          <button class="mt-4 bg-[#2d961ace] hover:bg-[#22BB07E1] text-white font-bold py-2 px-4 rounded-full" onclick="console.log('Hey')">Login</button>
         </form>
 
         <p>Or Sign up: </p>
-        <p>SIGN UP</p>
+        <button class="bg-[#2d961ace] hover:bg-[#22BB07E1] text-white font-bold py-2 px-4 rounded-full" onclick="loginScreen.close()">Sign Up</button>
       <div>
-
     </dialog>
     
     <footer class="flex 
