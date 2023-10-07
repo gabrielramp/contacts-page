@@ -1,13 +1,7 @@
 <?php
 
-// Include the DBConnector.php file to use the DatabaseConnector class.
 include 'DBConnector.php';
-
-// Use an alias 'db' for the DatabaseConnector class to shorten the syntax.
-use DatabaseConnector as db;
-
-// Create a new instance of the DatabaseConnector class, stored in the variable $con.
-$con = new db();
+$con = (new DatabaseConnector())->getConnection();
 
 // Check if the necessary POST data keys ('user', 'password') are set.
 if (!isset($_POST['user'], $_POST['password'])) {
@@ -15,43 +9,46 @@ if (!isset($_POST['user'], $_POST['password'])) {
     exit('Please fill both the username and password fields!');
 }
 
-// Prepare an SQL query to fetch the user data based on the username.
-if ($stmt = $con->prepare('SELECT ID, Password FROM Users WHERE Login = ?')) {
-    
-    // Bind the 'user' POST data to the SQL query.
-    $stmt->bind_param('s', $_POST['user']);
-    // Execute the SQL query.
-    $stmt->execute();
-    // Bind the result to variables.
-    $stmt->bind_result($id, $password);
-    // Fetch the data.
-    $stmt->fetch();
-    
-    // Close the statement to free up resources.
-    $stmt->close();
-    
-    // Check if the password matches the hashed password stored in the database.
-    if (password_verify($_POST['password'], $password)) {
-        // Password is correct! Start the session.
-        session_start();
-        $_SESSION['loggedin'] = TRUE;
-        $_SESSION['name'] = $_POST['user'];
-        $_SESSION['id'] = $id;
-        
-        // Redirect to the user dashboard or home page.
-        header('Location: Home.php');
-        exit;
-    } else {
-        // Password is incorrect, display an error message.
-        echo 'Incorrect username and/or password!';
-    }
-    
-} else {
-    // Error with SQL Query
-    echo 'Could not prepare statement!';
+if (!$con) {
+    echo 'connection error';
 }
+else {
+    $stmt = $con->prepare('SELECT ID, Password FROM Users WHERE Login = ?');
+    $stmt->bindValue(1, $_POST['user'], PDO::PARAM_STR);
+    $stmt->execute();
 
-// Close the database connection to free up resources.
-$con->close();
+    $numRows = $stmt->rowCount();;
 
+    if ($numRows > 0) {
+
+        $row = $stmt->fetch(); // Fetch the first row
+        $id = $row['ID'];
+        $password = $row['Password'];
+
+        if ($_POST['password'] == $password) {
+            // Password is correct! Start the session.
+            session_start();
+            $_SESSION['loggedin'] = TRUE;
+            $_SESSION['name'] = $_POST['user'];
+            $_SESSION['id'] = $id;
+
+            echo 'You have successfully logged in!';
+            
+            // Redirect to the user dashboard or home page.
+            header('Location: Home.php');
+            exit;
+        }
+        else {
+            // Password is incorrect, display an error message.
+            echo $_POST['password'];
+            echo $password;
+            echo 'Incorrect username and/or password!';
+        }
+    } 
+    else {
+        // Username does not exist
+        echo 'No username exists with that login!';
+    }
+}
+    $stmt = null;
 ?>
