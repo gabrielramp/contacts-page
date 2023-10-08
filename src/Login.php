@@ -8,12 +8,14 @@ $conn = (new DatabaseConnector())->getConnection();
 // Check if the necessary POST data keys ('user', 'password') are set.
 if (!isset($_POST['Login'], $_POST['Password'])) {
     // If any of these keys are not set, exit and output an error message.
-    exit('Please fill both the username and password fields!');
+    echo '<script>createAlert("Please fill both the username and password fields!")</script>';
+    exit;
 }
 
 if (empty($_POST['Login']) || empty($_POST['Password'])) {
     // there is an empty field
-    exit('Please fill both the username and password fields!');
+    echo '<script>createAlert("Please fill both the username and password fields!")</script>';
+    exit;
 }
 
 if (!$conn) {
