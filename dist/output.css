@@ -534,40 +534,6 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
-.container {
-  width: 100%;
-}
-
-@media (min-width: 640px) {
-  .container {
-    max-width: 640px;
-  }
-}
-
-@media (min-width: 768px) {
-  .container {
-    max-width: 768px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .container {
-    max-width: 1024px;
-  }
-}
-
-@media (min-width: 1280px) {
-  .container {
-    max-width: 1280px;
-  }
-}
-
-@media (min-width: 1536px) {
-  .container {
-    max-width: 1536px;
-  }
-}
-
 #exampleh1 {
   overflow: hidden;
   border-right: .15em solid orange;
@@ -579,7 +545,6 @@ video {
 
 .blinkingCaret {
   border-right: .15em solid orange;
-  white-space: nowrap;
   animation: blink-caret .60s step-end infinite;
 }
 
@@ -612,7 +577,17 @@ video {
 .fistandlastname-container {
   display: flex;
   width: 100%;
+  flex-direction: row;
   justify-content: space-between;
+  -moz-column-gap: 3rem;
+       column-gap: 3rem;
+}
+
+@media (min-width: 768px) {
+  .fistandlastname-container {
+    -moz-column-gap: 7rem;
+         column-gap: 7rem;
+  }
 }
 
 .registeringInsideContainer {
@@ -775,18 +750,8 @@ dialog {
   width: auto;
 }
 
-.w-fit {
-  width: -moz-fit-content;
-  width: fit-content;
-}
-
 .w-full {
   width: 100%;
-}
-
-.border-spacing-x-9 {
-  --tw-border-spacing-x: 2.25rem;
-  border-spacing: var(--tw-border-spacing-x) var(--tw-border-spacing-y);
 }
 
 .grid-rows-2 {
@@ -877,10 +842,6 @@ dialog {
 
 .border {
   border-width: 1px;
-}
-
-.border-4 {
-  border-width: 4px;
 }
 
 .border-b {
@@ -1015,6 +976,11 @@ dialog {
 
 .font-mono {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
 }
 
 .text-\[15px\] {

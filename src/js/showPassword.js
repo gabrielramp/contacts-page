@@ -1,5 +1,5 @@
 function showPassword(){
-    const textField = document.getElementById("passwordField");
+    const textField = document.getElementById("passwordInput");
 
     if (textField.type === "password") {
         textField.type = "text";

@@ -14,7 +14,6 @@
     
     .blinkingCaret {
         border-right: .15em solid orange;
-        white-space: nowrap;
         animation: blink-caret .60s step-end infinite;
     }
 
@@ -23,7 +22,7 @@
     }
 
     .fistandlastname-container {
-        @apply flex w-full justify-between
+            @apply flex w-full justify-between flex-row md:gap-x-28 gap-x-12;
     }
 
     .registeringInsideContainer {

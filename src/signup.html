@@ -6,11 +6,17 @@
     <script src="js/typingEffect.js"></script>
     <script src="js/showPassword.js"></script>
     <script src="js/showNextField.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.17.1/dist/css/uikit.min.css" />
+    
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.17.1/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.17.1/dist/js/uikit-icons.min.js"></script>
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/dist/output.css" rel="stylesheet">
     <title>COP4331C -- Small Project</title>
 </head>
-<body onload="typeWriter()" class="grid bg-gradient-to-t from-[#98FF98] to-[#32A89D] min-h-[100svh]">
+<body onload="typeWriter();activateEnter();" class="grid bg-gradient-to-t from-[#98FF98] to-[#32A89D] min-h-[100svh]">
 
       <nav class="flex 
                   border
@@ -24,14 +30,14 @@
         </button>
       </nav>
 
-      <form class="grid grid-rows-[auto_1fr] text-center justify-items-center signupBox">
+      <div class="grid grid-rows-[auto_1fr] text-center justify-items-center signupBox">
         
-        <div>
-          <span class="w-auto blinkingCaret" id="initialGreetings">
+        <div class="text-4xl">
+          <span class="blinkingCaret" id="initialGreetings">
           </span>  
         </div>
         
-            <div class="bg-green-200 
+        <form class="bg-green-200 
                       rounded 
                       shadow-md 
                       m-6
@@ -40,21 +46,20 @@
                       space-y-6 
                       justify-items-center 
                       justify-self-center
-                      container
-                      w-fit
                       h-fit
                       hidden
                       "
                       id="signupFields"
+                      hx-post="http://localhost/src/register.php?XDEBUG_SESSION_START=PHPSTORM"
+                      hx-replace-url="false"
+                      hx-target="#errors"
                       >
 
-            <div class="fistandlastname-container hidden" id="firstNameField">
+            <div class="fistandlastname-container" id="firstNameField">
               <div class="flex border-b
-                        border-gray-400 
-                          pr-[2px]
-                          w-fit
+                        border-gray-400
                           ">
-                <input class="focus:outline-none bg-transparent" 
+                <input class="focus:outline-none bg-transparent input-field" 
                       name="FirstName" type="text"
                       value=""
                       id="firstNameInput"
@@ -70,7 +75,7 @@
               <div class="registeringInsideContainer
                           ">
                 <input id="lastNameInput" 
-                      class="focus:outline-none bg-transparent" 
+                      class="focus:outline-none bg-transparent input-field" 
                       name="LastName" type="text"
                       placeholder="Last Name">
               
@@ -83,8 +88,8 @@
               <div class="registeringInsideContainer
                         ">
                 <input id="usernameInput" 
-                       class="focus:outline-none bg-transparent" 
-                       name="UserName" type="text"  
+                       class="focus:outline-none bg-transparent input-field" 
+                       name="Login" type="text"  
                        placeholder="Username">
               
               </div>
@@ -96,8 +101,8 @@
             <div class="password-container space-x-4 hidden" id="passwordField">
               <div class="registeringInsideContainer
                         ">
-                <input class="focus:outline-none bg-transparent"
-                      name="password"
+                <input class="focus:outline-none bg-transparent input-field"
+                      name="Password"
                       type="password"
                       id="passwordInput"
                       placeholder="Enter password"
@@ -117,13 +122,12 @@
             </div>
             
             <div class="p-3 hidden" id="sendToServerbtn">
-              <button class="bg-[#2d961ace] hover:bg-[#22BB07E1] text-white font-bold py-2 px-4 rounded-full">Submit</button>
+              <button type="submit" class="bg-[#2d961ace] hover:bg-[#22BB07E1] text-white font-bold py-2 px-4 rounded-full">Submit</button>
             </div>
 
-        </div>
-      </form>
+        </form>
+        <div id="errors"></div>
+      </div>
 
-    
-    
 </body>
 </html>
