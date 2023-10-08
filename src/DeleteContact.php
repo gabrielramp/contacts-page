@@ -1,6 +1,7 @@
 <?php
+	// Get the contact ID from the POST request
 	$inData = getRequestInfo();
-	$deleteid = $inData["contact_id"];
+	$cid = $inData["cid"];
 
 	// Use the userid below to check if the user performing this operation owns this contact. (Optional)
 	$sessionData = getSessionInfo();
@@ -19,7 +20,7 @@
 		$stmt = $conn->prepare("DELETE FROM Contacts WHERE id = :deleteid");
 
 		// TODO: Finish this statement to delete the contact with the given ID.
-		$stmt->bindParam(':deleteid', $deleteid, PDO::PARAM_INT);
+		$stmt->bindParam(':deleteid', $cid, PDO::PARAM_INT);
 		$stmt->execute();
 		$stmt->close();
 		$conn->close();

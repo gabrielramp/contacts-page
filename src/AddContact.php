@@ -1,4 +1,5 @@
 <?php
+	// Get the contact info from the POST request
 	$inData = getRequestInfo();
 	$sessionData = getSessionInfo();
 	

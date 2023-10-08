@@ -4,7 +4,7 @@ $inData = getRequestInfo();
 $sessionData = getSessionInfo();
 
 $keyword = $inData["keyword"];
-$id = $sessionData["id"];
+$userid = $sessionData["id"];
 
 $searchResults = "";
 $searchCount = 0;
@@ -20,10 +20,10 @@ $conn = (new DatabaseConnector())->getConnection();
 if (!$conn) {
     returnWithError("Connection error.");
 } else {
-    $stmt = $conn->prepare("SELECT id, firstname, lastname, email, phone FROM Contacts WHERE userid = :id AND (firstname LIKE :keyword OR lastname LIKE :keyword OR email LIKE :keyword)");
+    $stmt = $conn->prepare("SELECT id, firstname, lastname, email, phone FROM Contacts WHERE userid = :userid AND (firstname LIKE :keyword OR lastname LIKE :keyword OR email LIKE :keyword)");
 
     // Bind parameters
-    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    $stmt->bindParam(':userid', $userid, PDO::PARAM_INT);
     $stmt->bindParam(':keyword', $keyword, PDO::PARAM_STR);
 
     $stmt->execute();
