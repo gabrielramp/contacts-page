@@ -1,7 +1,6 @@
 <?php
 
 include 'DBConnector.php';
-
 $conn = (new DatabaseConnector())->getConnection();
 
 // Check if the data exists.

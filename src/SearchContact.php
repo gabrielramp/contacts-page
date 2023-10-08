@@ -1,20 +1,10 @@
 <?php
 
-//session_start();
-// Debug session
-
 $inData = getRequestInfo();
 $sessionData = getSessionInfo();
 
 $keyword = $inData["keyword"];
 $id = $sessionData["id"];
-
-//$id = 0;
-// Debug
-
-//echo "Keyword: " . $keyword . "\n";
-//echo "ID: " . $id . "\n";
-// More debug
 
 $searchResults = "";
 $searchCount = 0;
@@ -33,17 +23,11 @@ if (!$conn) {
     $stmt = $conn->prepare("SELECT id, firstname, lastname, email, phone FROM Contacts WHERE userid = :id AND (firstname LIKE :keyword OR lastname LIKE :keyword OR email LIKE :keyword)");
 
     // Bind parameters
-    $stmt->bindParam(':id', $id);
-    $stmt->bindParam(':keyword', $keyword);
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    $stmt->bindParam(':keyword', $keyword, PDO::PARAM_STR);
 
     $stmt->execute();
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    //echo json_encode($results);
-    //echo "\n";
-    //echo "Success!";
-    //echo "\n";
-    // Debug
 
     $stmt->closeCursor(); // Close the cursor
 
