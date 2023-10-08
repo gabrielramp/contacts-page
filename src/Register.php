@@ -42,7 +42,7 @@ else {
             $stmt->bindValue(1, $_POST['FirstName'], PDO::PARAM_STR);
             $stmt->bindValue(2, $_POST['LastName'], PDO::PARAM_STR);
             $stmt->bindValue(3, $_POST['Login'], PDO::PARAM_STR);
-            $stmt->bindValue(4, $_POST['Password'], PDO::PARAM_STR);
+            $stmt->bindValue(4, password_hash($_POST['Password'], PASSWORD_DEFAULT), PDO::PARAM_STR);
             $stmt->execute();
 
             // Account created, redirect to login page
