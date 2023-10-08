@@ -2,7 +2,7 @@ const initialGreet = "Hey there, welcome to the Y2K.| Let's get started"
 const speed = 50; // The speed of typing in milliseconds
 let i = 0;
 
-async function typeWriter() {
+function typeWriter() {
     if (initialGreet.charAt(i) === "|")
     {
         const greetingDiv = document.getElementById("initialGreetings");
