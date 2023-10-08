@@ -1,24 +1,30 @@
 <?php
 
+// Include the DBConnector.php file to use the DatabaseConnector class.
 include 'DBConnector.php';
-$con = (new DatabaseConnector())->getConnection();
 
-// Check if the necessary POST data keys ('Login', 'password') are set.
+$conn = (new DatabaseConnector())->getConnection();
+
+// Check if the necessary POST data keys ('user', 'password') are set.
 if (!isset($_POST['Login'], $_POST['Password'])) {
     // If any of these keys are not set, exit and output an error message.
-    exit('Please fill both the Loginname and password fields!');
+    exit('Please fill both the username and password fields!');
 }
 
-if (!$con) {
-    echo 'connection error';
+if (empty($_POST['Login']) || empty($_POST['Password'])) {
+    // there is an empty field
+    exit('Please fill both the username and password fields!');
+}
+
+if (!$conn) {
+    returnWithError("Connection error.");
 }
 else {
-    $stmt = $con->prepare('SELECT ID, Password FROM Users WHERE Login = ?');
+    $stmt = $conn->prepare('SELECT ID, Password FROM Users WHERE Login = ?');
     $stmt->bindValue(1, $_POST['Login'], PDO::PARAM_STR);
     $stmt->execute();
 
     $numRows = $stmt->rowCount();;
-
     if ($numRows > 0) {
 
         $row = $stmt->fetch(); // Fetch the first row
@@ -32,22 +38,22 @@ else {
             $_SESSION['name'] = $_POST['Login'];
             $_SESSION['id'] = $id;
 
-            echo 'You have successfully logged in!';
-            
+            echo '<script>createAlert("You have successfully logged in!", "danger")</script>';
+
             // Redirect to the Login dashboard or home page.
             header('Location: Home.php');
             exit;
-        }
+    }
         else {
             // Password is incorrect, display an error message.
             echo $_POST['Password'];
             echo $password;
             echo 'Incorrect Loginname and/or password!';
         }
-    } 
+    }
     else {
         // Loginname does not exist
-        echo 'No Loginname exists with that login!';
+        echo '<script>createAlert("No Loginname exists with that login!", "danger")</script>';
     }
 }
     $stmt = null;
