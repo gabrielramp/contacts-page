@@ -5,11 +5,12 @@
     <script src="https://unpkg.com/htmx.org@1.9.6"></script>
     <script src="js/typingEffect.js"></script>
     <script src="js/showPassword.js"></script>
+    <script src="js/showNextField.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/dist/output.css" rel="stylesheet">
     <title>COP4331C -- Small Project</title>
 </head>
-<body class="grid bg-gradient-to-t from-[#98FF98] to-[#32A89D] min-h-[100svh]">
+<body onload="typeWriter()" class="grid bg-gradient-to-t from-[#98FF98] to-[#32A89D] min-h-[100svh]">
 
       <nav class="flex 
                   border
@@ -26,15 +27,10 @@
       <form class="grid grid-rows-[auto_1fr] text-center justify-items-center signupBox">
         
         <div>
-          Greetings
-          <br>
-          <span class="w-auto">Hey there, welcome to the Y2K. 
-            <br>
-            Let's get started
+          <span class="w-auto blinkingCaret" id="initialGreetings">
           </span>  
         </div>
         
-          
             <div class="bg-green-200 
                       rounded 
                       shadow-md 
@@ -47,55 +43,63 @@
                       container
                       w-fit
                       h-fit
+                      hidden
                       "
+                      id="signupFields"
                       >
 
-            <div class="fistandlastname-container">
-              <div class="flex border-b 
+            <div class="fistandlastname-container hidden" id="firstNameField">
+              <div class="flex border-b
                         border-gray-400 
                           pr-[2px]
                           w-fit
                           ">
                 <input class="focus:outline-none bg-transparent" 
-                      name="FirstName" type="text" id="firstNameField" 
-                      placeholder="First Name">
+                      name="FirstName" type="text"
+                      value=""
+                      id="firstNameInput"
+                      placeholder="First Name"
+                      >
               </div>
               
-              <button type="button" onclick="console.log()"
+              <button type="button" onclick="showNext('firstNameField')"
                       class="continueBtn">Continue</button>
             </div>
 
-            <div class="password-container flex">
+            <div class="fistandlastname-container hidden" id="lastNameField">
               <div class="registeringInsideContainer
                           ">
-                <input class="focus:outline-none bg-transparent" 
-                      name="LastName" type="text" id="lastNameField" 
+                <input id="lastNameInput" 
+                      class="focus:outline-none bg-transparent" 
+                      name="LastName" type="text"
                       placeholder="Last Name">
               
               </div>
-              <button type="button" onclick="console.log()"
+              <button type="button" onclick="showNext('lastNameField')"
                       class="continueBtn">Continue</button>
             </div>
 
-            <div class="password-container flex">
+            <div class="user-container hidden" id="usernameField">
               <div class="registeringInsideContainer
                         ">
-                <input class="focus:outline-none bg-transparent" 
-                  name="UserName" type="text" id="lastNameField" 
-                  placeholder="Username">
-                
-                </div>
-              <button type="button" onclick="console.log()"
+                <input id="usernameInput" 
+                       class="focus:outline-none bg-transparent" 
+                       name="UserName" type="text"  
+                       placeholder="Username">
+              
+              </div>
+
+              <button type="button" onclick="showNext('usernameField')"
                       class="continueBtn">Continue</button>
             </div>
             
-            <div class="password-container flex space-x-4">
+            <div class="password-container space-x-4 hidden" id="passwordField">
               <div class="registeringInsideContainer
                         ">
                 <input class="focus:outline-none bg-transparent"
                       name="password"
                       type="password"
-                      id="passwordField"
+                      id="passwordInput"
                       placeholder="Enter password"
                       >
                   
@@ -108,11 +112,11 @@
                       id="showField">
                 </button>
               </div>
-              <button type="button" onclick="console.log()"
+              <button type="button" onclick="showNext('passwordField')"
                       class="continueBtn">Continue</button>
             </div>
             
-            <div class="p-3">
+            <div class="p-3 hidden" id="sendToServerbtn">
               <button class="bg-[#2d961ace] hover:bg-[#22BB07E1] text-white font-bold py-2 px-4 rounded-full">Submit</button>
             </div>
 

@@ -12,6 +12,12 @@
         blink-caret .60s step-end infinite;
     }
     
+    .blinkingCaret {
+        border-right: .15em solid orange;
+        white-space: nowrap;
+        animation: blink-caret .60s step-end infinite;
+    }
+
     .continueBtn {
         @apply bg-[#2d961ace] hover:bg-[#22BB07E1] text-xs md:text-base text-white font-bold p-[2px] md:py-1 md:px-2 rounded-md
     }
