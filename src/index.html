@@ -3,8 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <script src="https://unpkg.com/htmx.org@1.9.6"></script>
-    <script src="js/Hamburger.js"></script>
+    <script src="js/typingEffect.js"></script>
     <script src="js/showPassword.js"></script>
+    <script src="js/showNextField.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.17.1/dist/css/uikit.min.css" />
+    
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.17.1/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.17.1/dist/js/uikit-icons.min.js"></script>
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/dist/output.css" rel="stylesheet">
     <title>COP4331C -- Small Project</title>
@@ -165,40 +172,48 @@
                   border-zinc-500
                    ">Login</h1>
 
-        <form class="flex flex-col gap-2">
+        <form class="flex flex-col gap-2"
+              hx-post="http://localhost/src/login.php?XDEBUG_SESSION_START=PHPSTORM"
+              hx-replace-url="false"
+              hx-target="#errors"
+
+        >
           <label>Username:</label>
           <input class="border-b
                       border-gray-400 
                         focus:outline-none" 
-                        name="login"
+                        name="Login"
                         type="text"
                         placeholder="Enter username"
                         >
           <label for="password">Password: </label>
+
           <div class="flex border-b border-gray-400 pr-[2px]">
             <input class="focus:outline-none"
-                    name="password"
+                    name="Password"
                     type="password"
                     id="passwordField"
                     placeholder="Enter password"
                     >
             
-            <button onclick="showPassword()" id="togglePassword">
+            <button type="button" onclick="showPassword()" id="togglePassword">
               <img src="./img/eye-password-hide-svgrepo-com.svg" alt="Hide"
-                   class="h-5 hidden"
-                   id="hideField">
+                  class="h-5 hidden"
+                  id="hideField">
               <img src="./img/eye-password-show-svgrepo-com.svg" alt="Show"
-                   class="h-5"
-                   id="showField">
+                  class="h-5"
+                  id="showField">
             </button>
 
           </div>
-          <button class="mt-4 bg-[#2d961ace] hover:bg-[#22BB07E1] text-white font-bold py-2 px-4 rounded-full" onclick="console.log('Hey')">Login</button>
+          <button class="mt-4 bg-[#2d961ace] hover:bg-[#22BB07E1] text-white font-bold py-2 px-4 rounded-full">Login</button>
         </form>
 
         <p>Or Sign up: </p>
-        <button class="bg-[#2d961ace] hover:bg-[#22BB07E1] text-white font-bold py-2 px-4 rounded-full" onclick="loginScreen.close()">Sign Up</button>
-      <div>
+        <button class="bg-[#2d961ace] hover:bg-[#22BB07E1] text-white font-bold py-2 px-4 rounded-full" onclick="location.href='/src/signup.html'">Sign Up</button>
+      </div>
+
+      <div id="errors"></div>
     </dialog>
     
     <footer class="flex 
@@ -214,6 +229,6 @@
         2023 COP4331C -- Small Project. Made with love by Group-25
       </p>
     </footer>
-    
+
 </body>
 </html>

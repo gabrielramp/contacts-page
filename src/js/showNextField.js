@@ -122,6 +122,18 @@ function createAlert(message, statusName) {
         message: message,
         status: 'danger',
         pos: 'bottom-right',
-        timeout: 5000
+        timeout: 50000
     });
+}
+
+function createAlertDialog(message, statusName) {
+    let error = UIkit.notification({
+        message: message,
+        status: 'danger',
+        pos: 'bottom-right',
+        timeout: 50000
+    });
+
+    document.querySelector('#loginScreen .errors').appendChild(error.$el);
+
 }

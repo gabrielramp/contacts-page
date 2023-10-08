@@ -653,6 +653,14 @@ dialog {
   z-index: 10;
 }
 
+.z-50 {
+  z-index: 50;
+}
+
+.z-auto {
+  z-index: auto;
+}
+
 .col-auto {
   grid-column: auto;
 }
