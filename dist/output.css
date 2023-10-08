@@ -641,6 +641,10 @@ dialog {
   border-radius: 0.5rem;
 }
 
+.fixed {
+  position: fixed;
+}
+
 .absolute {
   position: absolute;
 }
@@ -738,6 +742,10 @@ dialog {
   height: 100%;
 }
 
+.h-screen {
+  height: 100vh;
+}
+
 .min-h-\[100svh\] {
   min-height: 100svh;
 }
@@ -760,6 +768,15 @@ dialog {
 
 .w-full {
   width: 100%;
+}
+
+.w-screen {
+  width: 100vw;
+}
+
+.w-fit {
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 .grid-rows-2 {

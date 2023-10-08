@@ -134,6 +134,6 @@ function createAlertDialog(message, statusName) {
         timeout: 50000
     });
 
-    document.querySelector('#loginScreen .errors').appendChild(error.$el);
+    document.querySelector('#loginScreen #errors').appendChild(error.$el);
 
 }

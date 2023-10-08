@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <script src="https://unpkg.com/htmx.org@1.9.6"></script>
     <script src="js/typingEffect.js"></script>
+    <script src="js/Hamburger.js"></script>
     <script src="js/showPassword.js"></script>
     <script src="js/showNextField.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.17.1/dist/css/uikit.min.css" />
@@ -97,7 +98,8 @@
                                 hover:text-[#37ff14e1] 
                                 hover:duration-300
                                 bg-transparent
-                                " href="#"
+                                "
+                                onclick="loginScreen.showModal()"
                           >Login</a
                         >
                       </li>
@@ -213,7 +215,7 @@
         <button class="bg-[#2d961ace] hover:bg-[#22BB07E1] text-white font-bold py-2 px-4 rounded-full" onclick="location.href='/src/signup.html'">Sign Up</button>
       </div>
 
-      <div id="errors"></div>
+      <div id="errors" class="fixed sm:w-[360px] w-[300px] h-full flex-wrap"></div>
     </dialog>
     
     <footer class="flex 
