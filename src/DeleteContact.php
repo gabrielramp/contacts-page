@@ -1,41 +1,37 @@
 <?php
+	// Get the contact ID from the POST request
 	$inData = getRequestInfo();
+	$cid = $inData["cid"];
+
+	// Use the userid below to check if the user performing this operation owns this contact. (Optional)
 	$sessionData = getSessionInfo();
-	
 	$userid = $sessionData["id"];
-	$firstname = $inData["firstname"];
-	$lastname = $inData["lastname"];
-	$email = $inData["email"];
-	$phone = $inData["phone"];
 
-	// Include the DBConnector.php file to use the DatabaseConnector class.
 	include 'DBConnector.php';
+    $conn = (new DatabaseConnector())->getConnection();
 
-	// Use an alias 'db' for the DatabaseConnector class to shorten the syntax.
-	use DatabaseConnector as db;
-
-	// Create a new instance of the DatabaseConnector class, stored in the variable $conn.
-	$conn = new db();
-
-	if ($conn->connect_error) 
+	if (!$conn)
 	{
-		returnWithError( $conn->connect_error );
+		returnWithError('Connection error.');
 	}
 	else
 	{
 		// Assuming you have a table named "Contacts" with a primary key column "id" to identify contacts.
-		$stmt = $conn->prepare("DELETE FROM Contacts WHERE userid, firstname, lastname, email, phone = (?,?,?,?,?)");
-		$stmt->bind_param("sssss", $userid, $firstname, $lastname, $email, $phone);
+		$stmt = $conn->prepare("DELETE FROM Contacts WHERE id = :deleteid");
+
+		// TODO: Finish this statement to delete the contact with the given ID.
+		$stmt->bindParam(':deleteid', $cid, PDO::PARAM_INT);
 		$stmt->execute();
 		$stmt->close();
 		$conn->close();
+
 		echo "Contact deleted successfully";
 		// TODO: Add something to return to the front end to signify a successful contact delete.
 	}
 
 	function getRequestInfo()
 	{
-		return $_GET; // Change from $_POST to $_GET to receive data from the URL query parameters.
+		return $_POST; // Change from $_POST to $_GET to receive data from the URL query parameters.
 	}
 
 	function getSessionInfo()
