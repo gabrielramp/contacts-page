@@ -1,4 +1,6 @@
 <?php
+	session_start();
+
 	// Get the contact ID from the POST request
 	$inData = getRequestInfo();
 	$cid = $inData["cid"];

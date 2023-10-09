@@ -1,14 +1,12 @@
 <?php
 
 session_start();
-// Debug session
 
 $inData = getRequestInfo();
 $sessionData = getSessionInfo();
 
 $keyword = $inData["keyword"];
-$id = 17;
-//$id = $sessionData["id"];
+$id = $sessionData["id"];
 
 $searchResults = "";
 $searchCount = 0;

@@ -1,4 +1,6 @@
 <?php
+	session_start();
+
 	// Get the contact info from the POST request
 	$inData = getRequestInfo();
 	$sessionData = getSessionInfo();
@@ -12,7 +14,7 @@
 	include 'DBConnector.php';
     $conn = (new DatabaseConnector())->getConnection();
 
-	if (!$conn) 
+	if (!$conn)
 	{
 		returnWithError('Connection error.');
 	}
