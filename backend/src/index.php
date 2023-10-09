@@ -24,7 +24,6 @@
           <img class="h-6"src="img/drawing.svg" alt="The Y2K website!">     
         </a>
 
-
         <div class="hidden 
                     w-full 
                     md:flex 

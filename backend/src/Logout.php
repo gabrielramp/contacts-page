@@ -20,7 +20,7 @@ if (ini_get("session.use_cookies")) {
 session_destroy();
 
 // Redirect the user to the login page (or wherever you want them to go after logging out)
-header('Location: index.php');
+header('Location: http://138.197.100.219/');
 exit;
 
 ?>
