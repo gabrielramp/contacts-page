@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bindParam(':lastname', $lastname, PDO::PARAM_STR);
     $stmt->bindParam(':email', $email, PDO::PARAM_STR);
     $stmt->bindParam(':phone', $phone, PDO::PARAM_STR);
-    $stmt->bindParam(':id', $cid, PDO::PARAM_INT);
+    $stmt->bindParam(':cid', $cid, PDO::PARAM_INT);
 
     // Execute the SQL statement
     $stmt->execute();
