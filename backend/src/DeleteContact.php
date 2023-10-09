@@ -27,7 +27,7 @@
 		$stmt->close();
 		$conn->close();
 
-		echo "Contact deleted successfully";
+		echo '<script>createAlert("Successfully deleted contact!", "danger")</script>';
 		// TODO: Add something to return to the front end to signify a successful contact delete.
 	}
 
