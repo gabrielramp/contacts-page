@@ -192,11 +192,19 @@
             </button>
 
           </div>
+<<<<<<< HEAD
           <button type="submit" class="simpleBtn">Login</button>
         </form>
 
         <p>Or Sign up: </p>
         <button class="simpleBtn" onclick="location.href='/src/signup.html'">Sign Up</button>
+=======
+          <button type="submit" class="mt-4 bg-[#2d961ace] hover:bg-[#22BB07E1] text-white font-bold py-2 px-4 rounded-full">Login</button>
+        </form>
+
+        <p>Or Sign up: </p>
+        <button class="bg-[#2d961ace] hover:bg-[#22BB07E1] text-white font-bold py-2 px-4 rounded-full" onclick="location.href='/src/signup.html'">Sign Up</button>
+>>>>>>> 9dd521e81589ed3189de6c79c52151bd43f9e347
       </div>
 
       <div id="errors" class="fixed sm:w-[360px] w-[300px] h-full flex-wrap"></div>

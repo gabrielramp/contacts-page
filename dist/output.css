@@ -534,40 +534,6 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
-.container {
-  width: 100%;
-}
-
-@media (min-width: 640px) {
-  .container {
-    max-width: 640px;
-  }
-}
-
-@media (min-width: 768px) {
-  .container {
-    max-width: 768px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .container {
-    max-width: 1024px;
-  }
-}
-
-@media (min-width: 1280px) {
-  .container {
-    max-width: 1280px;
-  }
-}
-
-@media (min-width: 1536px) {
-  .container {
-    max-width: 1536px;
-  }
-}
-
 #exampleh1 {
   overflow: hidden;
   border-right: .15em solid orange;
@@ -1088,6 +1054,7 @@ dialog {
   width: 100%;
 }
 
+<<<<<<< HEAD
 .max-w-xl {
   max-width: 36rem;
 }
@@ -1428,6 +1395,8 @@ dialog {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
+=======
+>>>>>>> 9dd521e81589ed3189de6c79c52151bd43f9e347
 .grid-rows-2 {
   grid-template-rows: repeat(2, minmax(0, 1fr));
 }
@@ -1572,6 +1541,7 @@ dialog {
   align-items: center;
 }
 
+<<<<<<< HEAD
 .items-baseline {
   align-items: baseline;
 }
@@ -1588,6 +1558,8 @@ dialog {
   justify-content: flex-start;
 }
 
+=======
+>>>>>>> 9dd521e81589ed3189de6c79c52151bd43f9e347
 .justify-end {
   justify-content: flex-end;
 }
@@ -1654,12 +1626,15 @@ dialog {
   margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
 }
 
+<<<<<<< HEAD
 .space-y-4 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
   margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(1rem * var(--tw-space-y-reverse));
 }
 
+=======
+>>>>>>> 9dd521e81589ed3189de6c79c52151bd43f9e347
 .space-y-6 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
   margin-top: calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));
@@ -1672,6 +1647,7 @@ dialog {
   margin-bottom: calc(2rem * var(--tw-space-y-reverse));
 }
 
+<<<<<<< HEAD
 .space-y-reverse > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 1;
 }
@@ -1748,6 +1724,8 @@ dialog {
   align-self: flex-start;
 }
 
+=======
+>>>>>>> 9dd521e81589ed3189de6c79c52151bd43f9e347
 .self-end {
   align-self: flex-end;
 }
@@ -2368,6 +2346,7 @@ dialog {
   text-align: center;
 }
 
+<<<<<<< HEAD
 .text-right {
   text-align: right;
 }
@@ -2416,6 +2395,8 @@ dialog {
   vertical-align: super;
 }
 
+=======
+>>>>>>> 9dd521e81589ed3189de6c79c52151bd43f9e347
 .font-mono {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }

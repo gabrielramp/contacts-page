@@ -13,6 +13,7 @@ function deleteContact(contact) {
         body: params
     })
 
+<<<<<<< HEAD
     .then(data => {
         if (data.ok) {
             return data.json();
@@ -40,6 +41,13 @@ function deleteContact(contact) {
         console.error("There was a problem with the fetch operation:", error.message);
     });
 }
+=======
+function editContact(contact) {
+    sessionStorage.setItem('editContactData', JSON.stringify(contact));
+    window.location.href = "./EditingPage.php";
+}
+
+>>>>>>> 9dd521e81589ed3189de6c79c52151bd43f9e347
 function getContacts() {
 
     const toQuery = document.getElementById("searchData").value;    
@@ -91,11 +99,16 @@ function populateResults(data) {
 
         const editButton = document.createElement("button");
         editButton.type = "button";
+<<<<<<< HEAD
         editButton.className = "bg-[#3894a3] text-[#0000FF] p-2 rounded cursor-pointer transition duration-300 hover:bg-[#2b6f7c] col-span-4";
+=======
+        editButton.className = "continueBtn col-span-4 p-2";
+>>>>>>> 9dd521e81589ed3189de6c79c52151bd43f9e347
         editButton.textContent = "Edit";
 
         editButton.onclick = function() {
             editContact(item);
+<<<<<<< HEAD
         }
         
         const deleteButton = document.createElement("button");
@@ -110,11 +123,17 @@ function populateResults(data) {
         card.appendChild(editButton);
         card.appendChild(deleteButton);
         
+=======
+        };
+        
+        card.appendChild(editButton);
+>>>>>>> 9dd521e81589ed3189de6c79c52151bd43f9e347
         container.appendChild(card);
     });
 
 }
 
+<<<<<<< HEAD
 
 // Get the data from the previous page
 
@@ -132,5 +151,21 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             console.error("No contact data found for editing.");
         }
+=======
+// Get the data from the previous page
+
+document.addEventListener('DOMContentLoaded', function() {
+    const contactData = JSON.parse(sessionStorage.getItem('editContactData'));
+    if (contactData) {
+        // Populate the edit form fields with the contactData values
+        document.getElementById("firstname").value = contactData.firstname;
+        document.getElementById("lastname").value = contactData.lastname;
+        document.getElementById("email").value = contactData.email;
+        document.getElementById("phone").value = contactData.phone;
+        document.getElementById("contactId").value = contactData.id;
+        
+    } else {
+        console.error("No contact data found for editing.");
+>>>>>>> 9dd521e81589ed3189de6c79c52151bd43f9e347
     }
 });
