@@ -97,35 +97,29 @@
                 to-[#32A89D]"
                 >
         <div class="flex flex-col min:w-[600px] break-all">
-            <div class="flex flex-col justify-between">
-                <h3>
-                    Search Contacts
-                </h3>
-                
-                <div class="flex justify-between">
-                    <input class="border rounded
-                    border-black
-                    focus:outline-none
-                    bg-transparent
-                    w-10/12
-                    placeholder-black
-                    text-black
-                    "
-                    name="SearchBar"
-                    type="text"
-                    placeholder="  Enter first name, last name, email, or phone number"
-                    id="searchData"
-                    >
-                    <button type="button" class="continueBtn" onclick="getContacts()">
-                        Search
-                    </button>
-                </div>
-            </div>
 
-            <div class="AddContactButton">
+            <div class="flex flex-col justify-between">
+              <h3>
+                  New Contact Information
+              </h3>
+          
               <form action="AddContact.php" method="post">
+                  <div class="flex justify-between mb-2">
+                      <input class="border rounded border-black focus:outline-none bg-transparent w-10/12 placeholder-black text-black" name="firstname" type="text" placeholder="  Enter first name" required>
+                  </div>
+                  <div class="flex justify-between mb-2">
+                      <input class="border rounded border-black focus:outline-none bg-transparent w-10/12 placeholder-black text-black" name="lastname" type="text" placeholder="  Enter last name" required>
+                  </div>
+                  <div class="flex justify-between mb-2">
+                      <input class="border rounded border-black focus:outline-none bg-transparent w-10/12 placeholder-black text-black" name="email" type="email" placeholder="  Enter email" required>
+                  </div>
+                  <div class="flex justify-between mb-2">
+                      <input class="border rounded border-black focus:outline-none bg-transparent w-10/12 placeholder-black text-black" name="phone" type="tel" placeholder="  Enter phone number" required>
+                  </div>
                   <div class="flex justify-end">
-                    <button type="button" class="continueBtn" onclick="location.href='addContact.html'">Add Contact</button>
+                      <button type="submit" class="continueBtn">
+                          Add Contact
+                      </button>
                   </div>
               </form>
           </div>
