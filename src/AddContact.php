@@ -27,11 +27,12 @@
 		$stmt->bind_param("sssss", $userid, $firstname, $lastname, $email, $phone);
 		$stmt->execute();
 
-
 		$stmt->close();
 		$conn->close();
-		echo "Contact added successfully";
-		// TODO: Add something to return to the front end to signify a successful contact add.
+		
+		// Redirect to Search.html
+		header("Location: Search.html");
+		exit();  // Ensure no further code is executed
 	}
 
 	function getRequestInfo()
