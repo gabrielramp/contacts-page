@@ -1,6 +1,9 @@
 <?php
 	session_start();
 
+  ini_set('display_errors', 1);
+  ini_set('display_startup_errors', 1);
+  error_reporting(E_ALL);
 	// Get the contact info from the POST request
 	$inData = getRequestInfo();
 	$sessionData = getSessionInfo();
@@ -29,10 +32,12 @@
 
 		$stmt->execute();
 
-		$stmt->close();
-		$conn->close();
+		$stmt = null;
+		$conn = null;
 		
-		echo "Contact added successfully";
+   
+   echo '<script>createAlert("Contact added successfully.", "primary");</script>';
+   echo '<script>redirectToSearch();</script>';
 		// TODO: Add something to return to the front end to signify a successful contact add.
 	}
 

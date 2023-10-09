@@ -1,8 +1,3 @@
-<?php
-session_start();
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -64,16 +59,15 @@ session_start();
     <div class="flex justify-center bg-gradient-to-t from-green-300 to-[#32A89D] p-4">
         <div class="flex flex-col w-full max-w-xl space-y-4">
 
-            <h3 class="text-2xl">Edit Contact</h3>
+            <h3 class="text-2xl">Add Contact</h3>
 
-            <form id="editContactForm" hx-post="http://138.197.100.219/LAMPAPI/src/EditContact.php" hx-replace-url="true" hx-target="body" hx-boost="true">
+            <form id="addContactForm" hx-post="http://138.197.100.219/LAMPAPI/src/AddContact.php" hx-replace-url="true" hx-target="#errors" hx-boost="true">
                 <input class="flex-grow border rounded border-black focus:outline-none bg-transparent placeholder-black text-black p-2 mb-2" type="text" name="firstname" id="firstname" placeholder="First Name">
                 <input class="flex-grow border rounded border-black focus:outline-none bg-transparent placeholder-black text-black p-2 mb-2" type="text" name="lastname" id="lastname" placeholder="Last Name">
                 <input class="flex-grow border rounded border-black focus:outline-none bg-transparent placeholder-black text-black p-2 mb-2" type="email" name="email" id="email" placeholder="Email">
                 <input class="flex-grow border rounded border-black focus:outline-none bg-transparent placeholder-black text-black p-2 mb-2" type="text" name="phone" id="phone" placeholder="Phone Number">
-                <input type="hidden" name="contactId" id="contactId" value="1">
                 
-                <button class="p-2 bg-blue-500 text-white rounded hover:bg-blue-600">Save Changes</button>
+                <button class="p-2 bg-blue-500 text-white rounded hover:bg-blue-600">Add Contact</button>
             </form>
 
         </div>
@@ -88,5 +82,4 @@ session_start();
     </footer>
 
 </body>
-
 </html>

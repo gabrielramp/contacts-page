@@ -21,14 +21,13 @@
 		// Assuming you have a table named "Contacts" with a primary key column "id" to identify contacts.
 		$stmt = $conn->prepare("DELETE FROM Contacts WHERE id = :deleteid");
 
-		// TODO: Finish this statement to delete the contact with the given ID.
 		$stmt->bindParam(':deleteid', $cid, PDO::PARAM_INT);
 		$stmt->execute();
-		$stmt->close();
-		$conn->close();
+		$stmt = null;
+		$conn = null;
 
-		echo '<script>createAlert("Successfully deleted contact!", "danger")</script>';
-		// TODO: Add something to return to the front end to signify a successful contact delete.
+		echo json_encode(["message" => "Contact deleted successfully"]);
+
 	}
 
 	function getRequestInfo()

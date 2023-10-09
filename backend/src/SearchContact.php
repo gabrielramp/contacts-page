@@ -6,35 +6,39 @@ $inData = getRequestInfo();
 $sessionData = getSessionInfo();
 
 $keyword = $inData["keyword"];
-$id = $sessionData["id"];
+$id = 17;
+//$id = $sessionData["id"];
 
 $searchResults = "";
 $searchCount = 0;
 
-if ($keyword == "" or $keyword == null or !is_numeric($id)) {
-    returnWithError("Please enter a search term.");
-    exit();
-}
-
 include 'DBConnector.php';
 $conn = (new DatabaseConnector())->getConnection();
+
+
 
 if (!$conn) {
     returnWithError("Connection error.");
 } else {
-    $stmt = $conn->prepare("SELECT id, firstname, lastname, email, phone FROM Contacts WHERE userid = :id AND (firstname LIKE :keyword OR lastname LIKE :keyword OR email LIKE :keyword)");
-    $searchKeyword = "%" . $keyword . "%";
 
-    // Bind parameters
-    $stmt->bindParam(':id', $id);
-    $stmt->bindParam(':keyword', $searchKeyword);
+    if ($keyword == "" or $keyword == null) {
+        // Search for all records with the specified user ID
+        $stmt = $conn->prepare("SELECT id, firstname, lastname, email, phone FROM Contacts WHERE userid = :id");
+        $stmt->bindParam(':id', $id);
+    } else {
+        // Search for records matching the keyword and user ID
+        $stmt = $conn->prepare("SELECT id, firstname, lastname, email, phone FROM Contacts WHERE userid = :id AND (firstname LIKE :keyword OR lastname LIKE :keyword OR email LIKE :keyword OR phone LIKE :keyword)");
+        $searchKeyword = "%" . $keyword . "%";
+        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':keyword', $searchKeyword);
+    }
 
     $stmt->execute();
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    $stmt->closeCursor(); // Close the cursor
+    $stmt->closeCursor();
 
-    $searchCount = count($results); // Count the search results
+    $searchCount = count($results);
 
     if ($searchCount == 0) {
         returnWithError("No Records Found");

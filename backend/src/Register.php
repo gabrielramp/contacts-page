@@ -36,7 +36,8 @@ else {
         // Login already in use
         // This function is defined in the showNextField.js file. Please read and understand how to use this
         // As currently it uses HTMX to not break anything...
-        echo '<script>createAlert("The user already exists. Please login instead.", "danger")</script>';
+        echo '<script>createAlert("The user already exists. Please login instead.", "primary");</script>';
+        echo '<script>redirectToLogin();</script>';
     } else {
         // email not in use, insert new account
         if ($stmt = $conn->prepare('INSERT INTO Users(FirstName, LastName, Login, Password) VALUES(?, ?, ?, ?)')) {
@@ -49,10 +50,11 @@ else {
             $stmt->execute();
 
             // Account created, redirect to login page
-            echo '<script>createAlert("You have successfully registered, you can now login!", "danger")</script>';
+            echo '<script>createAlert("You have successfully registered, you can now login!", "success");</script>';
+            echo '<script>redirectToLogin();</script>';
         } else {
             // Error with SQL Query
-            echo '<script>createAlert("Could not prepare statement", "danger")</script>';
+            echo '<script>createAlert("Could not prepare statement", "danger");</script>';
         }
     }
     $stmt = null;
