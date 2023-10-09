@@ -22,9 +22,13 @@
         py-4 md:py-0 px-4 text-lg text-gray-700 bg-[#C0C0C0] shadow-md border-black
     }
     .continueBtn {
-        @apply bg-[#2d961ace] hover:bg-[#22BB07E1] text-xs md:text-base text-white font-bold p-[2px] md:py-1 md:px-2 rounded-md
+    
+        @apply bg-blue-500 hover:bg-blue-600 text-xs md:text-base text-white font-bold p-[2px] md:py-1 md:px-2 rounded
     }
-
+    
+    .simpleBtn {
+      @apply p-2 bg-blue-500 text-white rounded hover:bg-blue-600
+    }
     .fistandlastname-container {
             @apply flex w-full justify-between flex-row md:gap-x-28 gap-x-12;
     }

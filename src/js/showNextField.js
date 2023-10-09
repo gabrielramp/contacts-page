@@ -52,7 +52,7 @@ function showNext(fieldToShow) {
 
             // This has to be replaced with a modal or something that prompts the user without being an annoyance.
             else {
-                createAlert("That is not a valid username. Try again.", "danger");
+                createAlert("The username has to be between 5 and 20 characters.", "danger");
             }
 
             break;
@@ -120,18 +120,31 @@ function activateEnter() {
 function createAlert(message, statusName) {
     UIkit.notification({
         message: message,
-        status: 'danger',
+        status: statusName,
         pos: 'bottom-right',
-        timeout: 50000
+        timeout: 5000
     });
 }
+
+function redirectToLogin() {
+    setTimeout(function() {
+        window.location.href = 'http://138.197.100.219/'; 
+    }, 3000); 
+}
+
+function redirectToSearch() {
+    setTimeout(function () {
+        window.location.href = 'http://138.197.100.219/LAMPAPI/src/Search.php'
+    }, 3000);
+}
+
 
 function createAlertDialog(message, statusName) {
     let error = UIkit.notification({
         message: message,
         status: 'danger',
         pos: 'bottom-right',
-        timeout: 50000
+        timeout: 5000
     });
 
     document.querySelector('#loginScreen #errors').appendChild(error.$el);
