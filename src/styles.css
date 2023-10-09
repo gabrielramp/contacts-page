@@ -16,7 +16,11 @@
         border-right: .15em solid orange;
         animation: blink-caret .60s step-end infinite;
     }
-
+    
+    .mainNavBar {
+        @apply col-auto flex flex-wrap items-center justify-between w-full
+        py-4 md:py-0 px-4 text-lg text-gray-700 bg-[#C0C0C0] shadow-md border-black
+    }
     .continueBtn {
         @apply bg-[#2d961ace] hover:bg-[#22BB07E1] text-xs md:text-base text-white font-bold p-[2px] md:py-1 md:px-2 rounded-md
     }
@@ -35,6 +39,19 @@
 
     .user-container {
         @apply flex w-full justify-between
+    }
+    
+    .itemsCard {
+        @apply grid grid-cols-4 justify-items-center justify-self-center m-6 mt-0 mb-0 p-2 border border-black rounded bg-green-200
+    }
+
+    .itemsCardHead {
+        @apply bg-green-200 rounded shadow-md m-6 mb-0 p-2 grid grid-cols-4 justify-items-center justify-self-center h-fit
+    }
+
+
+    .searchContainer {
+
     }
 
     @keyframes typing {
