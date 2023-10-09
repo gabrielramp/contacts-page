@@ -1,5 +1,4 @@
 <?php
-	// Get the contact info from the POST request
 	$inData = getRequestInfo();
 	$sessionData = getSessionInfo();
 	
@@ -9,27 +8,28 @@
 	$email = $inData["email"];
 	$phone = $inData["phone"];
 
+	// Include the DBConnector.php file to use the DatabaseConnector class.
 	include 'DBConnector.php';
-    $conn = (new DatabaseConnector())->getConnection();
 
-	if (!$conn) 
+	// Use an alias 'db' for the DatabaseConnector class to shorten the syntax.
+	use DatabaseConnector as db;
+
+	// Create a new instance of the DatabaseConnector class, stored in the variable $conn.
+	$conn = new db();
+
+	if ($conn->connect_error) 
 	{
-		returnWithError('Connection error.');
+		returnWithError( $conn->connect_error );
 	}
 	else
 	{
 		$stmt = $conn->prepare("INSERT into Contacts (userid, firstname, lastname, email, phone) VALUES(?,?,?,?,?)");
-		$stmt->bindParam(1, $userid, PDO::PARAM_INT);
-		$stmt->bindParam(2, $firstname, PDO::PARAM_STR);
-		$stmt->bindParam(3, $lastname, PDO::PARAM_STR);
-		$stmt->bindParam(4, $email, PDO::PARAM_STR);
-		$stmt->bindParam(5, $phone, PDO::PARAM_STR);
-
+		$stmt->bind_param("sssss", $userid, $firstname, $lastname, $email, $phone);
 		$stmt->execute();
+
 
 		$stmt->close();
 		$conn->close();
-		
 		echo "Contact added successfully";
 		// TODO: Add something to return to the front end to signify a successful contact add.
 	}

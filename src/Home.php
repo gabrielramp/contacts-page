@@ -1,9 +1,9 @@
 <?php
-// We need to use sessions, so you should always start sessions using the below code.
 session_start();
-// If the user is not logged in redirect to the login page...
+
 if (!isset($_SESSION['loggedin'])) {
-	header('Location: index.html');
+    // Change this for the HTML of the main screen
+	header('Location: http://127.0.0.1:5501/src/');
 	exit;
 }
 ?>

@@ -1,10 +1,14 @@
 <?php
 
+session_start();
+// Debug session
+
 $inData = getRequestInfo();
 $sessionData = getSessionInfo();
 
 $keyword = $inData["keyword"];
-$userid = $sessionData["id"];
+$id = 17;
+//$id = $sessionData["id"];
 
 $searchResults = "";
 $searchCount = 0;
@@ -20,11 +24,12 @@ $conn = (new DatabaseConnector())->getConnection();
 if (!$conn) {
     returnWithError("Connection error.");
 } else {
-    $stmt = $conn->prepare("SELECT id, firstname, lastname, email, phone FROM Contacts WHERE userid = :userid AND (firstname LIKE :keyword OR lastname LIKE :keyword OR email LIKE :keyword)");
+    $stmt = $conn->prepare("SELECT id, firstname, lastname, email, phone FROM Contacts WHERE userid = :id AND (firstname LIKE :keyword OR lastname LIKE :keyword OR email LIKE :keyword)");
+    $searchKeyword = "%" . $keyword . "%";
 
     // Bind parameters
-    $stmt->bindParam(':userid', $userid, PDO::PARAM_INT);
-    $stmt->bindParam(':keyword', $keyword, PDO::PARAM_STR);
+    $stmt->bindParam(':id', $id);
+    $stmt->bindParam(':keyword', $searchKeyword);
 
     $stmt->execute();
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -39,8 +44,6 @@ if (!$conn) {
         returnWithInfo($results);
     }
 }
-
-$conn->close();
 
 function getRequestInfo() {
     return $_GET;
@@ -63,5 +66,4 @@ function returnWithError($err) {
 function returnWithInfo($searchResults) {
     sendResultInfoAsJson(json_encode($searchResults));
 }
-
 ?>
