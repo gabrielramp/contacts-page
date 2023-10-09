@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $conn = (new DatabaseConnector())->getConnection();
 
     // Prepare the SQL statement to update the contact
-    $stmt = $conn->prepare('UPDATE Contacts SET firstname = :firstname, lastname = :lastname, email = :email, phone = :phone WHERE userid = :cid');
+    $stmt = $conn->prepare('UPDATE Contacts SET firstname = :firstname, lastname = :lastname, email = :email, phone = :phone WHERE id = :cid');
 
     // Bind the parameters to the SQL statement
     $stmt->bindParam(':firstname', $firstname, PDO::PARAM_STR);
